@@ -26,10 +26,10 @@
             </v-col>
             <v-col cols="8">
               <div class="d-flex justify-space-between">
-                <v-btn class="primary">
+                <v-btn class="primary" @click="scoreToA()">
                   <fa-icon icon="arrow-left" class="mr-2" /> Score to A
                 </v-btn>
-                <v-btn class="primary">
+                <v-btn class="primary" @click="scoreToB()">
                   Score to B<fa-icon icon="arrow-right" class="ml-2" />
                 </v-btn>
               </div>
@@ -51,18 +51,21 @@
                 <v-switch
                   v-model="game.teamA.strike1"
                   label="STRIKE 1"
+                  @change="updateGame"
                 ></v-switch>
               </div>
               <div>
                 <v-switch
                   v-model="game.teamA.strike2"
                   label="STRIKE 2"
+                  @change="updateGame"
                 ></v-switch>
               </div>
               <div>
                 <v-switch
                   v-model="game.teamA.strike3"
                   label="STRIKE 3"
+                  @change="updateGame"
                 ></v-switch>
               </div>
             </v-col>
@@ -86,25 +89,31 @@
                 <v-switch
                   v-model="game.teamB.strike1"
                   label="STRIKE 1"
+                  @change="updateGame"
                 ></v-switch>
               </div>
               <div>
                 <v-switch
                   v-model="game.teamB.strike2"
                   label="STRIKE 2"
+                  @change="updateGame"
                 ></v-switch>
               </div>
               <div>
                 <v-switch
                   v-model="game.teamB.strike3"
                   label="STRIKE 3"
+                  @change="updateGame"
                 ></v-switch>
               </div>
             </v-col>
           </v-row>
         </div>
         <div>
-          <v-btn @click="createNewGame()">Create New Game</v-btn>
+          <v-btn class="primary" @click="clearGame()">Create New Game</v-btn>
+          <v-btn class="ml-3 primary" @click="clearQuestionsLoaded()"
+            >Clear Loaded Questions</v-btn
+          >
         </div>
       </v-col>
       <v-col cols="4">
@@ -145,12 +154,29 @@ export default {
     ]),
   },
   methods: {
-    ...mapActions(['getGameByUser', 'updateGame']),
+    ...mapActions([
+      'clearQuestionsLoaded',
+      'createNewGameByUser',
+      'getGameByUser',
+      'updateGame',
+    ]),
     isQuestionLoaded(id) {
       return this.questionsLoaded.includes(id)
     },
-    createNewGame() {
-      this.getGameByUser(this.currentUserProfile.id)
+    clearGame() {
+      this.$swal({
+        title: 'Create New Game?',
+        text: `This will stop the current game and create a new game, Continue?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, New Game',
+        cancelButtonText: 'No',
+        showCloseButton: true,
+      }).then((result) => {
+        if (result.value) {
+          this.createNewGameByUser(this.currentUserProfile.id)
+        }
+      })
     },
     loadQuestion(question) {
       if (this.game) {
@@ -163,7 +189,28 @@ export default {
           }
         })
         this.questionsLoaded.push(question.id)
+        this.updateGame()
       }
+    },
+    scoreToA() {
+      this.game.teamA.score += this.game.questionScore
+      this.game.teamA.strike1 = false
+      this.game.teamA.strike2 = false
+      this.game.teamA.strike3 = false
+      this.game.questionScore = 0
+      this.game.question = null
+      this.game.answers = []
+      this.updateGame()
+    },
+    scoreToB() {
+      this.game.teamB.score += this.game.questionScore
+      this.game.teamB.strike1 = false
+      this.game.teamB.strike2 = false
+      this.game.teamB.strike3 = false
+      this.game.questionScore = 0
+      this.game.question = null
+      this.game.answers = []
+      this.updateGame()
     },
     updateQuestionScore(val) {
       this.game.questionScore += val

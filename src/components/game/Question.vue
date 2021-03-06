@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex align-center justify-center text-h1">
+  <div class="d-flex align-center justify-center text-h2">
     {{ question }}
   </div>
 </template>

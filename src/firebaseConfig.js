@@ -27,9 +27,7 @@ const currentUser = auth.currentUser
 // date issue fix according to firebase
 const settings = {}
 db.settings(settings)
-db.enablePersistence({ synchronizeTabs: true }).catch(function (err) {
-  console.log(err)
-})
+db.enablePersistence({ synchronizeTabs: true })
 
 // firestore collections
 const gamesRef = db.collection('games')

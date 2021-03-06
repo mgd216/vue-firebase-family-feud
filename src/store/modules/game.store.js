@@ -33,25 +33,26 @@ const getters = {
 }
 
 const actions = {
+  clearQuestionsLoaded({ commit }) {
+    commit('SET_QUESTIONS_LOADED', [])
+  },
+  async createNewGameByUser({ dispatch }, userId) {
+    fb.gamesRef.doc(userId).set(BLANK_GAME)
+    dispatch('getGameByUser', userId)
+  },
   async getGameByUser({ commit }, userId) {
-    fb.gamesRef
-      .doc(userId)
-      .get()
-      .then(async (doc) => {
-        if (doc.exists) {
-          commit('SET_NEW_GAME', doc.data())
-        } else {
-          fb.gamesRef.doc(userId).set(BLANK_GAME)
-          fb.gamesRef
-            .doc(userId)
-            .get()
-            .then((doc) => {
-              if (doc.exists) {
-                commit('SET_NEW_GAME', doc.data())
-              }
-            })
-        }
-      })
+    fb.gamesRef.doc(userId).onSnapshot(async (doc) => {
+      if (doc.exists) {
+        commit('SET_NEW_GAME', doc.data())
+      } else {
+        fb.gamesRef.doc(userId).set(BLANK_GAME)
+        fb.gamesRef.doc(userId).onSnapshot((doc) => {
+          if (doc.exists) {
+            commit('SET_NEW_GAME', doc.data())
+          }
+        })
+      }
+    })
   },
   updateGame({ rootGetters }) {
     fb.gamesRef.doc(rootGetters.currentUserProfile.id).set(rootGetters.game)
@@ -61,6 +62,9 @@ const actions = {
 const mutations = {
   SET_NEW_GAME(state, data) {
     state.game = data
+  },
+  SET_QUESTIONS_LOADED(state, data) {
+    state.questionsLoaded = data
   },
 }
 

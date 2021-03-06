@@ -1,12 +1,12 @@
 <template>
   <div>
     <div v-for="(a, index) of answers" :key="index">
-      <div v-if="a.showAnswer" class="text-h1 answer">
+      <div v-if="a.showAnswer" class="text-h2 answer">
         <v-row>
           <v-col cols="10" class="text-center">
             {{ a.answer }}
           </v-col>
-          <v-col cols="2" class="font-weight-bold">
+          <v-col cols="2" class="font-weight-bold text-center">
             {{ a.value }}
           </v-col>
         </v-row>
