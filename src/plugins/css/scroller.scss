@@ -1,0 +1,89 @@
+$app-header-height: 64px;
+$toolbar-height: 48px;
+$toolbar-gutter: 10px;
+
+.scroller-100 {
+  height: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scroller-200 {
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scroller-300 {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scroller-400 {
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scroller-500 {
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scroller-600 {
+  height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scroller-toolbar {
+  height: calc(100vh - (#{$app-header-height} + #{$toolbar-height} + #{$toolbar-gutter}));
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scroller-blue {
+  overflow-y: auto;
+  overflow-x: hidden !important;
+}
+
+.scroller-100::-webkit-scrollbar,
+.scroller-200::-webkit-scrollbar,
+.scroller-300::-webkit-scrollbar,
+.scroller-400::-webkit-scrollbar,
+.scroller-500::-webkit-scrollbar,
+.scroller-600::-webkit-scrollbar,
+.scroller-blue::-webkit-scrollbar,
+.scroller-toolbar::-webkit-scrollbar,
+.v-data-table__wrapper::-webkit-scrollbar {
+  width: 10px;
+  background-color: #727272;
+}
+
+.scroller-100::-webkit-scrollbar-track,
+.scroller-200::-webkit-scrollbar-track,
+.scroller-300::-webkit-scrollbar-track,
+.scroller-400::-webkit-scrollbar-track,
+.scroller-500::-webkit-scrollbar-track,
+.scroller-600::-webkit-scrollbar-track,
+.scroller-blue::-webkit-scrollbar-track,
+.scroller-toolbar::-webkit-scrollbar-track,
+.v-data-table__wrapper::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #727272;
+}
+
+.scroller-100::-webkit-scrollbar-thumb,
+.scroller-200::-webkit-scrollbar-thumb,
+.scroller-300::-webkit-scrollbar-thumb,
+.scroller-400::-webkit-scrollbar-thumb,
+.scroller-500::-webkit-scrollbar-thumb,
+.scroller-600::-webkit-scrollbar-thumb,
+.scroller-blue::-webkit-scrollbar-thumb,
+.scroller-toolbar::-webkit-scrollbar-thumb,
+.v-data-table__wrapper::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #1976d2;
+}

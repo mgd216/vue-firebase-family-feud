@@ -1,0 +1,25 @@
+{
+  "name": "functions",
+  "description": "Cloud Functions for Vue Firebase Family Feud",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "cross-env NODE_ENV=development firebase emulators:start --only functions --inspect-functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "~8.12.1",
+    "firebase-functions": "^3.7.0",
+    "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "eslint": "^7.2.0"
+  },
+  "private": true,
+  "engines": {
+    "node": "10"
+  }
+}
