@@ -46,11 +46,11 @@ async function main() {
     let obj = {
       question: data.question,
       answers: [
-        { answer: data.answerOne, value: data.answerOneVal },
-        { answer: data.answerTwo, value: data.answerTwoVal },
-        { answer: data.answerThree, value: data.answerThreeVal },
-        { answer: data.answerFour, value: data.answerFourVal },
-        { answer: data.answerFive, value: data.answerFiveVal },
+        { answer: data.answerOne, value: parseInt(data.answerOneVal) },
+        { answer: data.answerTwo, value: parseInt(data.answerTwoVal) },
+        { answer: data.answerThree, value: parseInt(data.answerThreeVal) },
+        { answer: data.answerFour, value: parseInt(data.answerFourVal) },
+        { answer: data.answerFive, value: parseInt(data.answerFiveVal) },
       ],
     }
 
