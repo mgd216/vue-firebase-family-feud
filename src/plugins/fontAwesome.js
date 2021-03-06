@@ -2,6 +2,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faArchway,
   faArrowCircleLeft,
+  faArrowLeft,
+  faArrowRight,
   faBuilding,
   faChartLine,
   faCheckCircle,
@@ -37,6 +39,8 @@ import {
 library.add(
   faArchway,
   faArrowCircleLeft,
+  faArrowLeft,
+  faArrowRight,
   faBuilding,
   faChartLine,
   faCheckCircle,

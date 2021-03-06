@@ -18,15 +18,18 @@ const BLANK_GAME = {
     strike3: false,
   },
   question: null,
+  answers: [],
   questionScore: 0,
 }
 
 const state = {
   game: null,
+  questionsLoaded: [],
 }
 
 const getters = {
   game: (state) => state.game,
+  questionsLoaded: (state) => state.questionsLoaded,
 }
 
 const actions = {
@@ -49,6 +52,9 @@ const actions = {
             })
         }
       })
+  },
+  updateGame({ rootGetters }) {
+    fb.gamesRef.doc(rootGetters.currentUserProfile.id).set(rootGetters.game)
   },
 }
 

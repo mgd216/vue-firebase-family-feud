@@ -19,7 +19,7 @@
           {{ game.teamA.name }}
         </v-col>
         <v-col cols="8">
-          <Question question="This is a test question?" />
+          <Question :question="game.question" />
         </v-col>
         <v-col cols="2" class="text-center text-h3">
           {{ game.teamB.name }}
@@ -32,12 +32,7 @@
           <Strike :show="game.teamA.strike3" />
         </v-col>
         <v-col cols="8">
-          <Answers
-            :answers="[
-              { answer: 'TEST', value: 10, showAnswer: true },
-              { answer: 'PIZZA', value: 23, showAnswer: true },
-            ]"
-          />
+          <Answers :answers="game.answers" />
         </v-col>
         <v-col cols="2">
           <Strike :show="game.teamB.strike1" />
@@ -53,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import Answers from '@/components/game/Answers'
 import Question from '@/components/game/Question'
 import Score from '@/components/game/Score'
@@ -68,7 +63,15 @@ export default {
     Strike,
   },
   computed: {
-    ...mapGetters(['game']),
+    ...mapGetters(['currentUserProfile', 'game']),
+  },
+  created() {
+    if (!this.game) {
+      this.getGameByUser(this.currentUserProfile.id)
+    }
+  },
+  methods: {
+    ...mapActions(['getGameByUser']),
   },
 }
 </script>
