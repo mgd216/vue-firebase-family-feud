@@ -1,7 +1,7 @@
 <template>
   <span class="mt-2">
     <v-tooltip v-if="linkAlreadySaved" bottom>
-      <template #activator="{on}">
+      <template #activator="{ on }">
         <fa-icon
           class="title pointer mt-1 mr-2 warning--text darker-1"
           icon="thumbtack"
@@ -12,7 +12,7 @@
       <span class="headline">Remove {{ display }} Quick Link.</span>
     </v-tooltip>
     <v-tooltip v-else bottom>
-      <template #activator="{on}">
+      <template #activator="{ on }">
         <fa-icon
           class="title pointer mt-1 mr-2"
           icon="thumbtack"

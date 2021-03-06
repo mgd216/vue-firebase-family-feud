@@ -28,10 +28,12 @@ const currentUser = auth.currentUser
 const settings = {}
 db.settings(settings)
 db.enablePersistence().catch(function (err) {
-  console(err)
+  console.log(err)
 })
 
 // firestore collections
+const gamesRef = db.collection('games')
+const questionsRef = db.collection('questions')
 const systemVarsRef = db.collection('system_vars')
 const usersRef = db.collection('users')
 const userSettingsRef = db.collection('user_settings')
@@ -44,6 +46,8 @@ export default {
   currentUser,
   db,
   functions,
+  gamesRef,
+  questionsRef,
   storage,
   systemVarsRef,
   usersRef,

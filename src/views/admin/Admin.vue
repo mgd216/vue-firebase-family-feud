@@ -24,32 +24,23 @@
 <script>
 import { mapActions } from 'vuex'
 
-const AdminSystemVars = () =>
-  import(
-    /* webpackChunkName: 'admin-system-vars' */ '@/views/admin/AdminSystemVars.vue'
-  )
-const AdminUserNotification = () =>
-  import(
-    /* webpackChunkName: 'admin-user-notification' */ '@/views/admin/AdminUserNotification.vue'
-  )
+const AdminGame = () =>
+  import(/* webpackChunkName: 'admin-game' */ '@/views/admin/AdminGame.vue')
 const UserList = () =>
   import(/* webpackChunkName: 'admin-user-list' */ '@/views/user/UserList.vue')
 
 const ADMIN_TABS = [
   {
-    id: 'user-notification',
-    tabTitle: 'User Notification',
-    component: 'AdminUserNotification',
+    id: 'game',
+    tabTitle: 'Game',
+    component: 'AdminGame',
   },
-  { id: 'system-vars', tabTitle: 'System Vars', component: 'AdminSystemVars' },
-  { id: 'user-list', tabTitle: 'User List', component: 'UserList' },
 ]
 
 export default {
   name: 'Admin',
   components: {
-    AdminSystemVars,
-    AdminUserNotification,
+    AdminGame,
     UserList,
   },
   data() {

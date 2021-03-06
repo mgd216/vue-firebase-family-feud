@@ -7,6 +7,7 @@ fb.auth.onAuthStateChanged((user) => {
     store.dispatch('getCurrentUserProfile')
     store.dispatch('getCurrentUserSettings')
 
+    store.dispatch('getQuestions')
     store.dispatch('getSystemVars')
     store.dispatch('getUserRoles')
     store.dispatch('getUsers')

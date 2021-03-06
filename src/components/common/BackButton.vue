@@ -1,6 +1,6 @@
 <template>
   <v-menu open-on-hover bottom nudge-right="10">
-    <template #activator="{on}">
+    <template #activator="{ on }">
       <fa-icon
         class="pointer mr-2"
         icon="step-backward"
