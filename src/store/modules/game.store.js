@@ -20,6 +20,7 @@ const BLANK_GAME = {
   question: null,
   answers: [],
   questionScore: 0,
+  showBuzzer: false,
 }
 
 const state = {

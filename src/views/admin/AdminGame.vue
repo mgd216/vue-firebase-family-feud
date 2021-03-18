@@ -109,11 +109,21 @@
             </v-col>
           </v-row>
         </div>
-        <div>
-          <v-btn class="primary" @click="clearGame()">Create New Game</v-btn>
-          <v-btn class="ml-3 primary" @click="clearQuestionsLoaded()"
-            >Clear Loaded Questions</v-btn
+        <div class="d-flex justify-space-between align-center">
+          <v-btn class="error" @click="clearGame()">Create New Game</v-btn>
+          <v-btn class="ml-3 primary" @click="clearQuestionsLoaded()">
+            Clear Loaded Questions
+          </v-btn>
+          <v-btn
+            v-if="game.showBuzzer"
+            class="ml-3 primary"
+            @click="clearBuzzer()"
           >
+            Clear Buzzer
+          </v-btn>
+          <v-btn v-else class="ml-3 primary" @click="showBuzzer()">
+            Show Buzzer
+          </v-btn>
         </div>
       </v-col>
       <v-col cols="4">
@@ -163,6 +173,12 @@ export default {
     isQuestionLoaded(id) {
       return this.questionsLoaded.includes(id)
     },
+    clearBuzzer() {
+      this.game.teamA.buzzer = null
+      this.game.teamB.buzzer = null
+      this.game.showBuzzer = false
+      this.updateGame()
+    },
     clearGame() {
       this.$swal({
         title: 'Create New Game?',
@@ -194,22 +210,26 @@ export default {
     },
     scoreToA() {
       this.game.teamA.score += this.game.questionScore
-      this.game.teamA.strike1 = false
-      this.game.teamA.strike2 = false
-      this.game.teamA.strike3 = false
-      this.game.questionScore = 0
-      this.game.question = null
-      this.game.answers = []
-      this.updateGame()
+      this.clearStrikes()
     },
     scoreToB() {
       this.game.teamB.score += this.game.questionScore
-      this.game.teamB.strike1 = false
-      this.game.teamB.strike2 = false
-      this.game.teamB.strike3 = false
+      this.clearStrikes()
+    },
+    showBuzzer() {
+      this.game.showBuzzer = true
+      this.updateGame()
+    },
+    clearStrikes() {
       this.game.questionScore = 0
       this.game.question = null
       this.game.answers = []
+      this.game.teamA.strike1 = false
+      this.game.teamA.strike2 = false
+      this.game.teamA.strike3 = false
+      this.game.teamB.strike1 = false
+      this.game.teamB.strike2 = false
+      this.game.teamB.strike3 = false
       this.updateGame()
     },
     updateQuestionScore(val) {

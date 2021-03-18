@@ -27,6 +27,7 @@
       </v-row>
       <v-row>
         <v-col cols="2">
+          <Buzzer />
           <Strike :show="game.teamA.strike1" />
           <Strike :show="game.teamA.strike2" />
           <Strike :show="game.teamA.strike3" />
@@ -35,6 +36,7 @@
           <Answers :answers="game.answers" />
         </v-col>
         <v-col cols="2">
+          <Buzzer />
           <Strike :show="game.teamB.strike1" />
           <Strike :show="game.teamB.strike2" />
           <Strike :show="game.teamB.strike3" />
@@ -50,6 +52,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import Answers from '@/components/game/Answers'
+import Buzzer from '@/components/game/Buzzer'
 import Question from '@/components/game/Question'
 import Score from '@/components/game/Score'
 import Strike from '@/components/game/Strike'
@@ -58,6 +61,7 @@ export default {
   name: 'Game',
   components: {
     Answers,
+    Buzzer,
     Question,
     Score,
     Strike,
